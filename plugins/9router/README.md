@@ -22,14 +22,50 @@ Level budgets follow 9Router's own `LEVEL_TO_BUDGET` map (none:0, minimal:512, l
 
 ## Installation
 
-Copy the plugin directory into your OpenCode config and register it:
+### 1. Get 9Router
+
+Run the gateway and note its API key (printed on first run, or in the dashboard at `http://localhost:20128`). The plugin needs only the base URL and that key.
+
+### 2. Register the plugin
+
+Point `plugin` in your global OpenCode config (`~/.config/opencode/opencode.json`) at the plugin source — three equivalent ways:
+
+**a. Direct from GitHub** (recommended — no clone needed):
 
 ```json
 {
-  "$schema": "https://opencode.ai/config.json",
   "plugin": [
-    ["file:///path/to/Opencode-Workflows/plugins/9router", {}]
-  ],
+    ["https://raw.githubusercontent.com/Nebuless/Opencode-Workflows/master/plugins/9router/index.ts", {}]
+  ]
+}
+```
+
+**b. From a local clone:**
+
+```json
+{
+  "plugin": [
+    ["file:///absolute/path/to/Opencode-Workflows/plugins/9router/index.ts", {}]
+  ]
+}
+```
+
+**c. File URL with options** (if your router is not on localhost):
+
+```json
+{
+  "plugin": [
+    ["file:///absolute/path/to/Opencode-Workflows/plugins/9router/index.ts", { "baseURL": "http://my-router:20128/v1" }]
+  ]
+}
+```
+
+### 3. Declare the provider
+
+Add the matching provider block (anywhere the plugin config is not already present):
+
+```json
+{
   "provider": {
     "9router": {
       "npm": "@ai-sdk/openai-compatible",
@@ -42,10 +78,22 @@ Copy the plugin directory into your OpenCode config and register it:
 }
 ```
 
-Then connect your key:
+### 4. Provide the API key
 
-- Run `/connect` and pick **9Router** (API key method; you can also enter a custom base URL there), **or**
-- Export `NINE_ROUTER_API_KEY`.
+Any one of:
+
+- **`/connect`** — start OpenCode, run `/connect`, pick **9Router**, paste the key (a custom base URL can be entered too). Stored credential; recommended.
+- **Env var** — `export NINE_ROUTER_API_KEY=sk-...` before launching OpenCode.
+- **Plugin options** — add `"apiKey": "sk-..."` to the plugin tuple options above (plain text in config; use only for throwaway setups).
+
+### 5. Verify
+
+Restart OpenCode, then:
+
+- `opencode run --model 9router/<model-id> "Say OK"` — pick any model id from your router (e.g. `9router/cx/gpt-5.6-sol`).
+- Or `/models` in the TUI: all discovered 9Router models appear with their thinking variants listed.
+
+Restart after editing `opencode.json`; config is read at startup.
 
 ## Options
 
