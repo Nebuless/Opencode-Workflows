@@ -1,0 +1,39 @@
+{
+  "name": "@nebulesstech/opencode-9router",
+  "version": "0.1.1",
+  "description": "OpenCode provider plugin for 9Router model discovery and thinking variants",
+  "type": "module",
+  "exports": "./index.ts",
+  "files": [
+    "index.ts",
+    "thinking.ts",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nebuless/Opencode-Workflows.git",
+    "directory": "plugins/9router"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "9router",
+    "ai",
+    "provider",
+    "reasoning"
+  ],
+  "scripts": {
+    "selfcheck": "bun run selfcheck.ts",
+    "pack:check": "npm pack --dry-run"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "1.18.31"
+  }
+}
