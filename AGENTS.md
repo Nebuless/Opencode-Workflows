@@ -28,7 +28,7 @@ This is a **workflow repository**, not a traditional application. Verification f
 
 <publishing>
 ## npm Plugin Authoring and Publishing
-- Each directory under `plugins/` MUST be treated as an independent npm package.
+- Each plugin directory that owns package metadata MUST be treated as an independent npm package.
 - Maintainers MUST run build, validation, packing, and publishing commands from the target plugin directory.
 - Maintainers MUST NOT publish from repository root.
 - Maintainers MUST follow [npm Plugin Authoring and Publishing](docs/npm-plugin-authoring-and-publishing.md).
@@ -46,228 +46,6 @@ A focused collection of reusable agent prompts and orchestration patterns:
 - **openspec-orchestrator**: Enforces strict OpenSpec formatting/validation and orchestrates subagents
 
 Agents are designed for global installation in `~/.config/opencode/agent/` for reuse across projects.
-
-### AI Research Tools
-- AI search integration tools and patterns are demonstrated within the specialized agent packs (see `agents/opencode-configurator/`).
-- Integrates with external AI services (e.g., Perplexica, OpenAI) via specialized skills.
-
-## Architecture Patterns
-
-### Command Structure
-Commands follow Opencode's built-in `/commands` patterns (see opencode.ai/docs/commands):
-- YAML frontmatter with descriptions
-- Arguments section explaining $ARGUMENTS handling
-- Step-by-step execution instructions
-- Integration with external utilities
-
-### Tool Integration
-Commands can integrate with various external tools:
-- **Script files**: JavaScript, Python, Bash executables
-- **Bash tools**: System utilities, package managers, development tools
-- **API endpoints**: Any curlable REST APIs or webhooks
-- **Natural language workflows**: Pure LLM-driven processes
-
-### Agent Structure
-Agents follow Opencode's agent patterns with YAML frontmatter:
-- **Description**: Clear guidance on when to use each agent
-- **Mode**: Operation mode and tool constraints (read-only vs write)
-- **Instruction Blocks**: LLM-optimized checklists and workflows
-- **Global Installation**: Designed for reuse across projects via `~/.config/opencode/agent/`
-
-<routing>
-## Task Navigation
-| Task | Entry Point | Key Files |
-|------|-------------|-----------|
-| Create AGENTS.md | /init | `agents/repo-navigator/` |
-| Security Review | /security-review | `agents/security-reviewer/` |
-| PRD Planning | /prd | `agents/parallel-PRD/` |
-| Maintain Repo | /maintain-repo | `.opencode/command/` |
-| Create Plugin | /create-plugin | `agents/create-opencode-plugin/` |
-</routing>
-
-### Configuration System
-- `example-opencode.json` templates for Opencode configuration. Demonstrates disabling the legacy `general` subagent in favor of `fast`/`smart` splitting to optimize model usage:
-  ```json
-  "subagents": {
-    "general": {
-      "disable": true
-    }
-  }
-  ```
-- References to `AGENTS.md` in instructions arrays
-- `package.json` in `.opencode/` for Opencode plugin dependencies
-- Follows Opencode schema standards
-
-## Model Requirements
-
-Repository intelligence requires models with strong:
-- **Context Management**: Maintaining project-level instructions throughout session
-- **Instruction Following**: Precise execution of multi-step workflows
-- **Agentic Capabilities**: Understanding when/how to use available commands and agents
-
-**Recommended Models**: GPT-5.2, Claude 4.5, Gemini 3.
-
-## Repository Structure
-
-```
-at/                          # Universal engineering guidelines (@coding-ts)
-└── CODING-TS.MD             # Core development principles and standards
-
-.opencode/                   # Root-level maintenance tools
-├── agent/
-│   └── repo-maintainer.md   # Health custodian
-├── command/
-│   ├── audit-repo.md        # Quality audit
-│   ├── maintain-repo.md     # Full maintenance cycle
-│   └── sync-docs.md         # Doc synchronization
-└── skill/
-    └── repo-maintenance/    # Maintenance logic & scripts
-
-thinking-variants config/    # Thinking-level configurations
-└── thinking-levels-opencode.json
-
-agents/                      # Agent templates catalog
-├── README.md               # Agent overview and usage guidance
-├── component-engineer/      # Expert architecture package
-│   └── .opencode/
-│       ├── agent/
-│       │   └── component-engineer.md
-│       ├── command/
-│       │   ├── component-create.md
-│       │   └── component-review.md
-│       └── skill/
-│           └── component-engineering/
-├── create-opencode-plugin/  # Plugin creation workflow
-│   └── .opencode/
-│       ├── agent/
-│       │   └── plugin-creator.md
-│       ├── command/
-│       │   └── create-plugin.md
-│       └── skill/
-│           └── create-opencode-plugin/
-├── generic/                # Globally useful agents
-│   └── .opencode/
-│       └── agent/
-│           ├── fast.md                     # High-speed workhorse
-│           ├── smart.md                    # Complex architecture expert
-│           ├── repo-navigator-creator.md   # AGENTS.md generation
-│           ├── subagent-orchestrator.md    # Multi-agent coordination
-│           └── openspec-orchestrator.md    # OpenSpec workflow enforcement
-├── repo-navigator/          # Repository documentation pack
-│   ├── README.md            # Pack documentation
-│   ├── agent/
-│   │   └── repo-navigator.md    # Primary agent
-│   ├── command/
-│   │   └── init.md              # Unified /init with argument routing
-│   └── skill/
-│       ├── agent-navigation-sop/    # AI navigation workflow
-│       ├── user-onboarding-sop/     # User assistance workflow
-│       └── skill-creator/           # Bundled for custom skill creation
-├── opencode-configurator/   # Configurator skills, agents, and commands
-│   ├── agent/
-│   │   └── opencode-configurator.md
-│   ├── skill/
-│   │   ├── agent-architect/
-│   │   ├── command-creator/
-│   │   ├── opencode-config/
-│   │   ├── plugin-installer/
-│   │   ├── skill-creator/
-│   │   ├── model-researcher/
-│   │   └── mcp-installer/
-│   └── command/
-│       ├── refactor-rfc-xml.md
-│       └── permissions-update.md
-├── parallel-PRD/           # Parallel PRD planning kit
-│   └── .opencode/
-│       ├── agent/
-│       │   ├── TEMPLATE-planner.md
-│       │   ├── glm-planner.md
-│       │   └── parallel-prd-orchestrator.md
-│       ├── command/
-│       │   └── parallel-prd.md
-│       └── skill/
-│           └── prd-authoring/
-├── security-reviewer/       # Security review tooling
-│   └── .opencode/
-│       ├── agent/
-│       │   └── security-reviewer.md
-│       └── skill/
-│           ├── security-ai-keys/
-│           ├── security-bun/
-│           ├── security-convex/
-│           ├── security-django/
-│           ├── security-docker/
-│           ├── security-express/
-│           ├── security-fastapi/
-│           ├── security-nextjs/
-│           ├── security-secrets/
-│           └── security-vite/
-└── vite-react-ts-convex-tailwind/ # Stack-specific expert pack
-    ├── CODING-TS.md
-    ├── CONVEX.md
-    ├── REACT19.md
-    ├── TAILWIND4.md
-    ├── TS59.MD
-    └── .opencode/
-        ├── agent/
-        │   ├── VRTCT-orchestrator.md       # Stack orchestrator
-        │   ├── VRTCT-brain.md              # Stack knowledge base
-        │   ├── convex-database-expert.md   # Backend/DB specialist
-        │   ├── react-19-master.md          # RSC/Actions expert
-        │   ├── tailwind-41-architect.md    # Utility-first designer
-        │   └── typescript-59-engineer.md   # Strict TS 5.9 engineer
-        ├── command/
-        │   ├── component-create.md
-        │   └── component-review.md
-        └── skill/
-            ├── component-engineering/      # shadcn/ui components
-            ├── convex-auth/                # Auth logic
-            ├── convex-components/          # RAG & Workflows
-            ├── convex-core/                # Backend patterns
-            ├── convex-deploy/              # Deployment SOP
-            ├── convex-runtime/             # Concurrent execution
-            └── vite-shadcn-tailwind4/       # Modern frontend setup
-
-cowork/                      # Multi-agent orchestration system
-├── README.md               # Cowork system overview
-├── AGENTS.md               # Cowork-specific agent navigation
-├── opencode.json           # Cowork configuration
-├── LESSONS-LEARNED.md      # Workflow optimization insights
-├── .opencode/               # Cowork internal agents and skills
-│   ├── agent/
-│   │   ├── admin-assistant.md
-│   │   ├── cowork-orchestrator.md
-│   │   ├── data-analyst.md
-│   │   ├── document-specialist.md
-│   │   ├── presentation-expert.md
-│   │   ├── cowork-configurator.md
-│   │   └── research-specialist.md
-│   ├── command/
-│   │   └── cowork.md
-│   └── skill/
-│       ├── branding/
-│       ├── comms/
-│       ├── cowork/
-│       ├── excel/
-│       ├── pdf/
-│       ├── powerpoint/
-│       ├── themes/
-│       ├── word/
-│       └── writing/
-└── vault/                  # Structured repository (Vault)
-    ├── 01-Core-Identity/   # Bio.md, MASTER-STYLE-GUIDE.md
-    ├── 02-Active-Work/     # 2026-01/, TEMPLATE.md
-    ├── 03-Research-Intel/  # Research logs
-    ├── 05-Output-Staging/  # DELIVERY-NOTES.md
-    └── 06-Archive/         # Historic data
-
-commands/                    # Additional command examples
-
-commands2skills/             # Command→Skill migration patterns
-├── COMMANDS.md
-├── calculate.js
-└── example-opencode.json
-```
 
 ## Working with This Repository
 
@@ -305,3 +83,98 @@ This repository is designed to expand with additional workflow templates and pat
 - Focus on **reusable patterns** and **template architectures**
 - Commands follow **Opencode standards** for compatibility
 - Context injection currently limited to session-start (future enhancement possible)
+
+# DOX framework
+
+- DOX is highly performant AGENTS.md hierarchy installed here
+- Agent must follow DOX instructions across any edits
+
+## Core Contract
+
+- AGENTS.md files are binding work contracts for their subtrees
+- Work products, source materials, instructions, records, assets, and durable docs must stay understandable from the nearest applicable AGENTS.md plus every parent AGENTS.md above it
+
+## Read Before Editing
+
+1. Read the root AGENTS.md
+2. Identify every file or folder you expect to touch
+3. Walk from the repository root to each target path
+4. Read every AGENTS.md found along each route
+5. If a parent AGENTS.md lists a child AGENTS.md whose scope contains the path, read that child and continue from there
+6. Use the nearest AGENTS.md as the local contract and parent docs for repo-wide rules
+7. If docs conflict, the closer doc controls local work details, but no child doc may weaken DOX
+
+Do not rely on memory. Re-read the applicable DOX chain in the current session before editing.
+
+## Update After Editing
+
+Every meaningful change requires a DOX pass before the task is done.
+
+Update the closest owning AGENTS.md when a change affects:
+
+- purpose, scope, ownership, or responsibilities
+- durable structure, contracts, workflows, or operating rules
+- required inputs, outputs, permissions, constraints, side effects, or artifacts
+- user preferences about behavior, communication, process, organization, or quality
+- AGENTS.md creation, deletion, move, rename, or index contents
+
+Update parent docs when parent-level structure, ownership, workflow, or child index changes. Update child docs when parent changes alter local rules. Remove stale or contradictory text immediately. Small edits that do not change behavior or contracts may leave docs unchanged, but the DOX pass still must happen.
+
+## Hierarchy
+
+- Root AGENTS.md is the DOX rail: project-wide instructions, global preferences, durable workflow rules, and the top-level Child DOX Index
+- Child AGENTS.md files own domain-specific instructions and their own Child DOX Index
+- Each parent explains what its direct children cover and what stays owned by the parent
+- The closer a doc is to the work, the more specific and practical it must be
+
+## Child Doc Shape
+
+- Create a child AGENTS.md when a folder becomes a durable boundary with its own purpose, rules, responsibilities, workflow, materials, or quality standards
+- Work Guidance must reflect the current standards of the project or user instructions; if there are no specific standards or instructions yet, leave it empty
+- Verification must reflect an existing check; if no verification framework exists yet, leave it empty and update it when one exists
+
+Default section order:
+- Purpose
+- Ownership
+- Local Contracts
+- Work Guidance
+- Verification
+- Child DOX Index
+
+## Style
+
+- Keep docs concise, current, and operational
+- Document stable contracts, not diary entries
+- Put broad rules in parent docs and concrete details in child docs
+- Prefer direct bullets with explicit names
+- Do not duplicate rules across many files unless each scope needs a local version
+- Delete stale notes instead of explaining history
+- Trim obvious statements, repeated rules, misplaced detail, and warnings for risks that no longer exist
+
+## Closeout
+
+1. Re-check changed paths against the DOX chain
+2. Update nearest owning docs and any affected parents or children
+3. Refresh every affected Child DOX Index
+4. Remove stale or contradictory text
+5. Run existing verification when relevant
+6. Report any docs intentionally left unchanged and why
+
+## User Preferences
+
+When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md
+
+## Child DOX Index
+
+- [`.opencode/AGENTS.md`](.opencode/AGENTS.md): Repository-specific maintenance tooling.
+- [`agents/AGENTS.md`](agents/AGENTS.md): Reusable agent packs and their shipped components.
+- [`commands/AGENTS.md`](commands/AGENTS.md): Standalone command templates and catalog metadata.
+- [`cowork/AGENTS.md`](cowork/AGENTS.md): Cowork workflows, artifact staging, and vault lifecycle.
+- [`docs/AGENTS.md`](docs/AGENTS.md): Source-backed contributor and release guides.
+- [`mcp-configs/AGENTS.md`](mcp-configs/AGENTS.md): Copyable MCP configuration examples.
+- [`plugins/AGENTS.md`](plugins/AGENTS.md): Plugin sources and independent package-release boundaries.
+- [`scripts/AGENTS.md`](scripts/AGENTS.md): One-shot repository automation.
+
+Root retains ownership of `README.md`, `registry.json`, `registry.toml`,
+`RFC-XML-STYLE-GUIDE.md`, `at/`, `commands2skills/`, and
+`thinking-variants config/`.
