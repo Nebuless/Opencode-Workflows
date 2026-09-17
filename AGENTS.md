@@ -26,6 +26,14 @@ This is a **workflow repository**, not a traditional application. Verification f
 - **Barrel Files**: Every module directory MUST have an `index.ts` (per `@coding-ts` guidelines).
 </rules>
 
+<publishing>
+## npm Plugin Authoring and Publishing
+- Each directory under `plugins/` MUST be treated as an independent npm package.
+- Maintainers MUST run build, validation, packing, and publishing commands from the target plugin directory.
+- Maintainers MUST NOT publish from repository root.
+- Maintainers MUST follow [npm Plugin Authoring and Publishing](docs/npm-plugin-authoring-and-publishing.md).
+</publishing>
+
 ## Current Workflows
 
 ### Agent Templates Catalog
