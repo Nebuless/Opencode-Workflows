@@ -1,49 +1,44 @@
-<operating-guide>
-## Operating Model
-- Orchestrator is the manager agent for multi-step work.
-- Specialists handle single-domain artifacts and report back to orchestrator.
-- Admin assistant handles hygiene, coordination, and follow-ups.
+<purpose>
+## Purpose
+- `cowork/` provides multi-agent workflows for research, data, documents, presentations, coordination, and verified artifact delivery through a structured vault.
+</purpose>
 
-## Required Reading
-- `vault/01-Core-Identity/MASTER-STYLE-GUIDE.md`
+<ownership>
+## Ownership
+- Orchestrator MUST manage multi-step work and own plans, timelines, and file routing.
+- Specialists MUST own single-domain artifacts and their verification, then report results to orchestrator.
+- Admin assistant MUST own hygiene, coordination, and follow-ups.
+</ownership>
 
-## Vault Locations
-- `vault/01-Core-Identity/` identity + style
-- `vault/02-Active-Work/` current projects by `YYYY-MM/Project-Name/`
-- `vault/03-Research-Intel/` web research by topic/company
-- `vault/05-Output-Staging/` verified deliverables
-- `vault/06-Archive/` closed work
+<local-contracts>
+## Local Contracts
+- Agents MUST read `vault/01-Core-Identity/MASTER-STYLE-GUIDE.md` before producing artifacts.
+- Agents MUST use `vault/01-Core-Identity/` for identity and style, `vault/02-Active-Work/YYYY-MM/Project-Name/` for current projects, `vault/03-Research-Intel/` for topic or company research, `vault/05-Output-Staging/` for verified deliverables, and `vault/06-Archive/` for closed work.
+- Agents MUST ground claims in files or sources and MUST cite source URLs or file paths for key claims.
+- Agents MUST verify outputs before staging them.
+- Agents MUST keep `cowork/LESSONS-LEARNED.md` minimal and deduplicated.
+- Agents MUST avoid boilerplate, filler, generic introductions, generic closings, hedging, excessive caveats, emojis, em dashes, and semicolons.
+- Each request MUST produce concrete outputs or decisions.
+</local-contracts>
 
-## Quality Rules
-- MUST ground claims in files or sources.
-- MUST avoid boilerplate and filler.
-- MUST verify outputs before staging.
-- MUST keep `cowork/LESSONS-LEARNED.md` minimal and deduplicated.
+<work-guidance>
+## Work Guidance
+- Each cycle SHOULD apply one small, documented improvement when evidence supports it.
+- Agents MUST consolidate lessons instead of appending duplicates.
+- Handoffs MUST include context with task summary and intended outcome, inputs with file paths, sources, and constraints, outputs with file types and target paths, verification with required manual, visual, or lint checks, and dependencies with blockers or timing constraints.
+- Status updates MUST use 3P: Progress, Plans, Problems.
+</work-guidance>
 
-## Anti Slop Rules
-- MUST avoid generic intros and closings.
-- MUST remove hedging and excessive caveats.
-- MUST provide concrete outputs or decisions per request.
-- MUST cite sources or file paths for key claims.
-- MUST avoid emojis.
-- MUST avoid em dashes and semicolons.
+<verification>
+## Verification
+- Maintainers MUST run `/audit-repo` to validate repository structure and configuration when Cowork contracts or configuration change.
+- Maintainers MUST run `/sync-docs` to check repository inventory and documentation drift when Cowork structure or documented inventory changes.
+- Artifact owners MUST inspect every deliverable manually for content, source grounding, style-guide compliance, and correct vault placement before staging.
+- Artifact owners MUST render and visually inspect layout-dependent outputs, including PDF and PPTX files, before staging.
+- Artifact owners MUST run artifact-specific lint or validation checks when available and record completed checks in the handoff.
+</verification>
 
-## Continuous Improvement
-- Apply kaizen with small documented improvements each cycle.
-- Consolidate lessons instead of appending duplicates.
-
-## Agent Cooperation
-- The orchestrator owns the plan, timeline, and file routing.
-- Specialists own their artifacts and verification.
-- Admin assistant owns hygiene and coordination follow-ups.
-
-## Handoff Checklist
-- Context with task summary and intended outcome.
-- Inputs with file paths, sources, constraints.
-- Outputs with filetypes and target paths.
-- Verification with required checks (manual or visual or lint).
-- Dependencies with blockers or timing constraints.
-
-## Status Updates
-- Use 3P with Progress, Plans, Problems.
-</operating-guide>
+<child-dox-index>
+## Child DOX Index
+- None. Vault lifecycle buckets are storage stages, not independently maintained boundaries.
+</child-dox-index>
