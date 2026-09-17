@@ -58,7 +58,11 @@ See `agents/create-opencode-plugin/README.md` for full details.
 ## Plugins
 
 - **Gemini/GLM Focused Mode** (`plugins/gemini-glm-focused-mode/`) – Injects a rigorous system prompt for GLM-4.7 and Gemini models to enforce precise, grounded, and persistent coding behavior.
-- **9Router Provider** (`plugins/9router/`) – Adds the 9Router gateway as a first-class provider: auto-discovered models from `GET /v1/models` and per-model thinking-level variants (`none`→`max`) translated to each upstream's request format (`reasoning_effort`, `thinking.budget_tokens`, `enable_thinking`, adaptive).
+- **9Router Provider** ([`plugins/9router/`](plugins/9router/README.md)) – Adds the 9Router gateway as a first-class provider: auto-discovered models from `GET /v1/models` and per-model thinking-level variants (`none`→`max`) translated to each upstream's request format (`reasoning_effort`, `thinking.budget_tokens`, `enable_thinking`, adaptive). See its README for package installation and configuration.
+
+Plugin packages publish independently. Maintainers MUST follow [npm Plugin Authoring
+and Publishing](docs/npm-plugin-authoring-and-publishing.md); repository root is
+not an npm publish target.
 
 ---
 
