@@ -1,0 +1,255 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/omo.schema.json",
+  "models": {
+    "luna": {
+      "model": "9router/cx/gpt-5.6-luna",
+      "reasoning": "high"
+    },
+    "terra": {
+      "model": "9router/cx/gpt-5.6-terra",
+      "reasoning": "high"
+    },
+    "sol": {
+      "model": "9router/cx/gpt-5.6-sol",
+      "reasoning": "high"
+    },
+    "astra": {
+      "model": "9router/cx/gpt-6-astra",
+      "reasoning": "high"
+    },
+    "default": {
+      "model": "9router/cx/gpt-5.6-terra",
+      "reasoning": "high"
+    }
+  },
+  "agents": {
+    "sisyphus": {
+      "model": "default"
+    },
+    "explore": {
+      "model": "luna"
+    },
+    "librarian": {
+      "model": "9router/cx/gpt-5.6-terra",
+      "reasoning": "xhigh"
+    },
+    "plan-consultant": {
+      "model": "astra"
+    },
+    "plan-reviewer": {
+      "model": "astra"
+    },
+    "adversarial-reviewer": {
+      "model": "9router/cx/gpt-5.6-sol",
+      "reasoning": "xhigh"
+    },
+    "implementer": {
+      "model": "luna"
+    }
+  },
+  "categories": {
+    "architect": {
+      "model": "sol"
+    },
+    "visual-engineering": {
+      "model": "luna"
+    },
+    "ultrabrain": {
+      "model": "sol"
+    },
+    "deep": {
+      "model": "sol"
+    },
+    "artistry": {
+      "model": "terra"
+    },
+    "quick": {
+      "model": "9router/cx/gpt-5.6-luna",
+      "reasoning": "medium"
+    },
+    "unspecified-low": {
+      "model": "9router/cx/gpt-5.6-luna",
+      "reasoning": "medium"
+    },
+    "unspecified-high": {
+      "model": "terra"
+    },
+    "writing": {
+      "model": "9router/cx/gpt-5.6-luna",
+      "reasoning": "xhigh"
+    }
+  },
+  "[opencode]": {
+    "model_fallback": false,
+    "agents": {
+      "sisyphus": {
+        "model": "9router/cx/gpt-5.6-terra",
+        "variant": "high"
+      },
+      "hephaestus": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "high"
+      },
+      "oracle": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "high"
+      },
+      "explore": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "high"
+      },
+      "librarian": {
+        "model": "9router/cx/gpt-5.6-terra",
+        "variant": "xhigh"
+      },
+      "multimodal-looker": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "high"
+      },
+      "prometheus": {
+        "model": "9router/cx/gpt-6-astra",
+        "variant": "high"
+      },
+      "metis": {
+        "model": "9router/cx/gpt-6-astra",
+        "variant": "high"
+      },
+      "momus": {
+        "model": "9router/cx/gpt-6-astra",
+        "variant": "high"
+      },
+      "atlas": {
+        "model": "9router/cx/gpt-5.6-terra",
+        "variant": "high"
+      },
+      "sisyphus-junior": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "high"
+      },
+      "plan-consultant": {
+        "model": "9router/cx/gpt-6-astra",
+        "variant": "high",
+        "mode": "subagent"
+      },
+      "plan-reviewer": {
+        "model": "9router/cx/gpt-6-astra",
+        "variant": "high",
+        "mode": "subagent"
+      },
+      "adversarial-reviewer": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "xhigh",
+        "mode": "subagent"
+      },
+      "implementer": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "high",
+        "mode": "subagent"
+      }
+    },
+    "categories": {
+      "architect": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "high"
+      },
+      "visual-engineering": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "high"
+      },
+      "ultrabrain": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "high"
+      },
+      "deep": {
+        "model": "9router/cx/gpt-5.6-sol",
+        "variant": "high"
+      },
+      "artistry": {
+        "model": "9router/cx/gpt-5.6-terra",
+        "variant": "high"
+      },
+      "quick": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "medium"
+      },
+      "unspecified-low": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "medium"
+      },
+      "unspecified-high": {
+        "model": "9router/cx/gpt-5.6-terra",
+        "variant": "high"
+      },
+      "writing": {
+        "model": "9router/cx/gpt-5.6-luna",
+        "variant": "xhigh"
+      }
+    }
+  },
+  "profiles": {
+    "default": {
+      "models": {
+        "default": {
+          "model": "9router/cx/gpt-5.6-terra",
+          "reasoning": "high"
+        }
+      },
+      "[opencode]": {
+        "agents": {
+          "sisyphus": {
+            "model": "9router/cx/gpt-5.6-terra",
+            "variant": "high"
+          }
+        }
+      }
+    },
+    "economy": {
+      "models": {
+        "default": {
+          "model": "9router/cx/gpt-5.6-luna",
+          "reasoning": "high"
+        }
+      },
+      "[opencode]": {
+        "agents": {
+          "sisyphus": {
+            "model": "9router/cx/gpt-5.6-luna",
+            "variant": "high"
+          }
+        }
+      }
+    },
+    "complex": {
+      "models": {
+        "default": {
+          "model": "9router/cx/gpt-5.6-sol",
+          "reasoning": "high"
+        }
+      },
+      "[opencode]": {
+        "agents": {
+          "sisyphus": {
+            "model": "9router/cx/gpt-5.6-sol",
+            "variant": "high"
+          }
+        }
+      }
+    },
+    "planning": {
+      "models": {
+        "default": {
+          "model": "9router/cx/gpt-6-astra",
+          "reasoning": "high"
+        }
+      },
+      "[opencode]": {
+        "agents": {
+          "sisyphus": {
+            "model": "9router/cx/gpt-6-astra",
+            "variant": "high"
+          }
+        }
+      }
+    }
+  }
+}
