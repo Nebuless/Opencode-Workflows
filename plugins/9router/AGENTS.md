@@ -4,7 +4,7 @@
 ## Purpose
 
 - This package registers 9Router as an OpenCode provider, discovers models, and builds model-specific thinking variants.
-- Current package identity is `@nebulesstech/opencode-9router@0.1.1`; this metadata MUST NOT be treated as proof that version `0.1.1` was published successfully.
+- Current published package identity is `@nebulesstech/opencode-9router@0.1.1`.
 </purpose>
 
 <ownership>
@@ -14,7 +14,8 @@
 - `thinking.ts` MUST own thinking-level mapping and variant generation.
 - `selfcheck.ts` MUST own live discovery and resolver checks.
 - `package.json` MUST own package identity, version, scripts, exports, engine constraints, and publish allowlist.
-- `README.md` MUST own user setup, security, verification, and release guidance.
+- `README.md` MUST own user setup, security, verification, release guidance, and
+  links to the root-owned `../../9router-gpt-only/` portable GPT-only bundle.
 </ownership>
 
 <local_contracts>
@@ -25,6 +26,8 @@
 - README installation pins and package identity text MUST match `package.json` version `0.1.1` until version changes deliberately.
 - API keys MUST NOT enter source, committed configuration, logs, issue reports, documentation examples as real values, or package payloads.
 - Remote gateways MUST use HTTPS; plain HTTP SHOULD remain limited to trusted local development.
+- Portable preset guidance MUST keep `provider.9router.models` absent so plugin
+  discovery can generate thinking variants.
 </local_contracts>
 
 <work_guidance>

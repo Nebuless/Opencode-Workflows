@@ -36,9 +36,8 @@ plugin loader, not a compiled JavaScript library for plain Node.js imports.
 The explicit provider block makes the endpoint visible; the plugin can register
 it without that block. No hand-written `models` block is needed for discovery.
 
-These instructions target the published `0.1.1` release. Package metadata alone
-does not establish that a release exists. A registry 404 can mean unpublished or
-inaccessible; confirm release availability with the maintainer.
+These instructions target published release `0.1.1`. For future versions, verify
+availability with `npm view @nebulesstech/opencode-9router@<version> version`.
 
 ### Authenticate
 
@@ -128,6 +127,36 @@ xhigh 32,768, max 128,000. The resolver filters or clamps against advertised
 keeping the first generated level. Missing format metadata uses reasoning and
 model-name heuristics; unknown formats may yield no variants. Variant labels
 are not guarantees of distinct upstream effort or quality.
+
+### Portable GPT-Only Preset
+
+Repository ships portable presets for OpenCode and Oh My OpenAgent:
+
+- [`9router-gpt-only-opencode.jsonc`](https://github.com/Nebuless/Opencode-Workflows/blob/master/9router-gpt-only/9router-gpt-only-opencode.jsonc)
+- [`9router-gpt-only-omo.jsonc`](https://github.com/Nebuless/Opencode-Workflows/blob/master/9router-gpt-only/9router-gpt-only-omo.jsonc)
+- [configuration-agent workflow](https://github.com/Nebuless/Opencode-Workflows/blob/master/9router-gpt-only/README.md)
+
+Merge OpenCode preset into project `opencode.json` or global
+`~/.config/opencode/opencode.json`. Merge OMO preset into `~/.omo/omo.jsonc`.
+Set `NINE_ROUTER_BASE_URL` and `NINE_ROUTER_API_KEY` before starting OpenCode.
+Use a trusted gateway and HTTPS for remote endpoints. Neither preset contains
+credentials, local paths, static provider models, or fallback routes.
+
+The OpenCode preset pins `oh-my-openagent@4.19.4` before
+`@nebulesstech/opencode-9router@0.1.1`. Dynamic discovery creates supported
+Terra selector variants: `none`, `low`, `medium`, `high`, and `xhigh`. Restart
+OpenCode after merging or changing either environment variable.
+
+Use bundle workflow for merge, security, and runtime instructions. Verify both
+preset contracts from repository root:
+
+```sh
+python3 9router-gpt-only/check-9router-gpt-only.py
+```
+
+This validates JSON, GPT-only routes, disabled fallback, required model efforts,
+portable environment placeholders, and absence of static 9Router variants. It
+does not establish package publication or gateway availability.
 
 ### Verify and Troubleshoot
 
