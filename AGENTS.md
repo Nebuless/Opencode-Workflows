@@ -172,9 +172,13 @@ When the user requests a durable behavior change, record it here or in the relev
 - [`cowork/AGENTS.md`](cowork/AGENTS.md): Cowork workflows, artifact staging, and vault lifecycle.
 - [`docs/AGENTS.md`](docs/AGENTS.md): Source-backed contributor and release guides.
 - [`mcp-configs/AGENTS.md`](mcp-configs/AGENTS.md): Copyable MCP configuration examples.
+- [`9router-gpt-only/AGENTS.md`](9router-gpt-only/AGENTS.md): Portable 9Router GPT-only presets and contract checker.
 - [`plugins/AGENTS.md`](plugins/AGENTS.md): Plugin sources and independent package-release boundaries.
 - [`scripts/AGENTS.md`](scripts/AGENTS.md): One-shot repository automation.
 
 Root retains ownership of `README.md`, `registry.json`, `registry.toml`,
 `RFC-XML-STYLE-GUIDE.md`, `at/`, `commands2skills/`, and
-`thinking-variants config/`.
+`thinking-variants config/`, which contains only generic thinking-level
+examples. `9router-gpt-only/` owns portable 9Router GPT-only presets and its
+contract verifier. Its presets MUST remain strict JSON, portable, secret-free,
+and MUST NOT replace dynamic 9Router discovery with static provider models.
